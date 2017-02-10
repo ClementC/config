@@ -1,7 +1,7 @@
 [color]
-	ui = auto
+    ui = auto
 [user]
-	name = Samuel Charron
-	email = samuel.charron@gmail.com
+    name = Clément Chastagnol
+    email = clement.chastagnol@gmail.com
 [alias]
-	oops = commit --amend
+    oops = commit --amend

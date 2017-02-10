@@ -1,59 +1,94 @@
-let g:syntastic_python_checker="pyflakes"
+"set autoindent
 
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
-
-set nocompatible "not vi-compatible
-
-" GUI options
-set background=dark
-set statusline=[%n]\ %<%f\ %((%1*%M%*%R%Y)%)\ %=%-19(\Line\ [%4l/%4L]\ \Col\ [%02c%03V]%)\ ascii['%03b']\ %P
-highlight StatusLine term=reverse cterm=bold ctermfg=white ctermbg=lightblue gui=bold guifg=white guibg=blue
-set ruler
-set laststatus=2
-
-" Indent width
-set shiftwidth=4
-
-" Force indent plugin
-filetype plugin indent on
-
-" Highlight search results
-set hlsearch
-set incsearch
-set showmatch
-
-" Default to paste mode to avoid double-indentation
-set paste
-
-" Syntax on (else no highlight on debian)
-syntax on
-
-" Transform tabs into spaces
+" expand tabs into spaces
 set expandtab
 
-" Set tabs equal to 2 spaces
-set ts=4
+" set the number of spaces in a tab (visual)
+set tabstop=4
 
-" Make mouse middle click paste without formatting it.
-map <MouseMiddle> <Esc>"*p
+" set the number of spaces in a tab (when editing)
+set softtabstop=4
 
-" Move Backup Files to ~/.vim/sessions
-set backupdir=~/.vim/sessions
-set dir=~/.vim/sessions
+set ruler
 
-" Turn off annoying swapfiles
-set noswapfile
+" when using the >> or << commands, shift lines by 4 spaces
+set shiftwidth=4
 
-" Set persistent undo (v7.3 only)
-set undodir=~/.vim/undodir
-set undofile
+set shiftround
 
-" Closetag plugin configuration
-autocmd FileType html,htmldjango,htmljinja,eruby,mako let b:closetag_html_style=1
-autocmd FileType html,xhtml,xml,htmldjango,htmljinja,eruby,mako source ~/.vim/bundle/closetag/plugin/closetag.vim
+" enable syntax highlighting
+syntax on
 
-" Tagbar plugin configuration
-let g:tagbar_usearrows = 1
-nnoremap <leader>l :TagbarToggle<CR>
+" turn on invisible characters
+set list listchars=tab:▷⋅,trail:⋅,nbsp:⋅
+
+" configure status line
+set statusline=%F%m%r%h%w\ [TYPE=%Y\ %{&ff}]\
+    \ [%l/%L\ (%p%%)
+
+" turn on selective indentation
+filetype plugin indent on
+au FileType py set autoindent
+au FileType py set smartindent
+au FileType py set textwidth=79 " PEP-8 Friendly
+
+" show line numbers
+set number
+
+" show command in bottom bar
+set showcmd
+
+" show a visual line under the cursor's current line 
+set cursorline
+
+" visual autocomplete for command menu
+set wildmenu
+
+" show the matching part of the pair for [] {} and ()
+set showmatch
+
+" enable all Python syntax highlighting features
+let python_highlight_all = 1
+
+" search as characters are entered
+set incsearch
+
+" highlight search matches
+set hlsearch
+
+" set split and vsplit to open new buffers below and right
+set splitbelow
+set splitright
+
+" choose the colorscheme
+"colorscheme molokai
+"let g:molokai_original = 1
+"let g:rehash256 = 1
+"syntax enable
+"set background=dark
+"colorscheme solarized
+"let g:solarized_termcolors=256
+colorscheme badwolf
+
+" disable autoindent when pasting text
+set paste
+
+execute pathogen#infect()
+
+" Syntastic options
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+
+" Better :sign interface symbols
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '!'
+
+" Use flake8
+let g:syntastic_python_checkers = ['pyflakes', 'flake8', 'pylint']
 
