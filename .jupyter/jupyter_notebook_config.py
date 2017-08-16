@@ -3,7 +3,7 @@ import sys
 import os
 
 
-sys.path.append(os.path.abspath('~/.local/share/jupyter/extensions'))
+sys.path.append(os.path.expanduser('~/.local/share/jupyter/extensions'))
 #--- nbextensions configuration ---
 
 
