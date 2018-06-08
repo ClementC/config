@@ -19,6 +19,9 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+# Include date and time in history
+HISTTIMEFORMAT="%d/%m/%y %T "
+
 # When displaying prompt, write previous command to history file so that,
 # any new shell immediately gets the history lines from all previous shells.
 PROMPT_COMMAND='history -a'
